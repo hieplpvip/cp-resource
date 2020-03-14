@@ -51,7 +51,7 @@ private:
     T mid = (l + r) >> 1;
     if (x <= mid && cur->lt)
       res = max(res, query(cur->lt, l, mid, x));
-    else if (x > mid && cur-> rt)
+    else if (x > mid && cur->rt)
       res = max(res, query(cur->rt, mid + 1, r, x));
     return res;
   }
