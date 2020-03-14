@@ -1,6 +1,6 @@
 /** Dynamic LiChao Segment Tree
-    Add lines in arbitrary slope order. Query maximum value at x.
-    To get minimum value, add lines with -a and -b and get -query
+    Add lines/segments in arbitrary slope order. Query maximum value at x.
+    To get minimum value, add lines/segments with -a and -b and get -query
     Time complexity: O(lgn) for each operation
     Source: my own code
     
