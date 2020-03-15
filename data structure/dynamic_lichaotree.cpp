@@ -46,21 +46,21 @@ private:
       update(cur->rt, mid + 1, r, u, v, nw);
     }
   }
-  T query(Node* cur, T l, T r, T x) {
-    T res = cur->line.calc(x);
-    T mid = (l + r) >> 1;
-    if (x <= mid && cur->lt)
-      res = max(res, query(cur->lt, l, mid, x));
-    else if (x > mid && cur->rt)
-      res = max(res, query(cur->rt, mid + 1, r, x));
-    return res;
-  }
 public:
   void addLine(T a, T b, T l = minX, T r = maxX) {
     update(root, minX, maxX, l, r, {a, b});
   }
   T query(T x) {
-    return query(root, minX, maxX, x);
+    Node* cur = root;
+    T res = cur->line.calc(x);
+    T l = minX, r = maxX, mid;
+    while (cur) {
+      res = max(res, cur->line.calc(x));
+      mid = (l + r) >> 1;
+      if (x <= mid) cur = cur->lt, r = mid;
+      else cur = cur->rt, l = mid + 1;
+    }
+    return res;
   }
   void init() {
     for (auto ptr: listNode) delete(ptr);
