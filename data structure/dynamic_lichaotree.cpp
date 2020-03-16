@@ -1,15 +1,19 @@
 /** Dynamic LiChao Segment Tree
-    Add lines/segments in arbitrary slope order. Query maximum value at x.
-    To get minimum value, add lines/segments with -a and -b and get -query
+    Add lines/segments in arbitrary slope order. Query maximum/minimum value at x.
+    
     Time complexity: O(lgn) for each operation
-    Source: my own code
+    Source: own work
+    Performance: roughly as fast as dynamic convex hull
+    Advantage: support segment, which convex hull can't
     
     Tested on:
-    - https://codeforces.com/gym/101175/problem/F (can also be solved with dynamic convex hull)
+    - https://codeforces.com/gym/101175/problem/F
     - https://vn.spoj.com/problems/VOMARIO/ (can only be solved with LiChao Segment Tree since the objects are segments, not lines)
+    - https://csacademy.com/contest/archive/task/squared-ends
+    
 **/
 
-template<typename T, T minX, T maxX, T defVal>
+template<typename T, T minX, T maxX, T defVal, bool maximum = true>
 struct DynamicLiChaoTree {
 private:
   struct Line {
@@ -17,7 +21,7 @@ private:
     inline T calc(T x) const { return a * x + b; }
   };
   struct Node {
-    Line line = {0, defVal};
+    Line line = {0, maximum ? defVal : -defVal};
     Node *lt = nullptr, *rt = nullptr;
   };
   Node* root;
@@ -47,7 +51,9 @@ private:
     }
   }
 public:
-  void addLine(T a, T b, T l = minX, T r = maxX) {
+  // change l,r to add segment
+  void add(T a, T b, T l = minX, T r = maxX) {
+    if (!maximum) a = -a, b = -b;
     update(root, minX, maxX, l, r, {a, b});
   }
   T query(T x) {
@@ -60,6 +66,7 @@ public:
       if (x <= mid) cur = cur->lt, r = mid;
       else cur = cur->rt, l = mid + 1;
     }
+    if (!maximum) res = -res;
     return res;
   }
   void init() {
