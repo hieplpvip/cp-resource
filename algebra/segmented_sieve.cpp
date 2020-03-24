@@ -5,8 +5,8 @@ Time complexity: O(sqrt(R))
 Tested on: https://www.spoj.com/problems/PRIME1/
 **/
 
-vector<bool> segmengedSieve(long long L, long long R) {
-  // generate all prime up to sqrt(R)
+vector<bool> segmentedSieve(long long L, long long R) {
+  // generate all primes up to sqrt(R)
   long long lim = sqrt(R);
   vector<bool> mark(lim + 1, false);
   vector<long long> primes;
@@ -21,6 +21,6 @@ vector<bool> segmengedSieve(long long L, long long R) {
   for (long long i: primes)
     for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i)
       isPrime[j - L] = false;
-  if (L == 1) isPrime[0] = false;
+  if (L == 1) isPrime[0] = false; // special case when L = 1
   return isPrime;
 }

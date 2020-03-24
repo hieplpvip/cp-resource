@@ -1,5 +1,5 @@
 /**
-segmengedSievewithpregen is faster
+segmentedSieveWithPreGen is faster
 **/
 
 #include <iostream>
@@ -11,8 +11,8 @@ segmengedSievewithpregen is faster
 using namespace std;
 const int NLOOP = 20;
 
-vector<bool> segmengedSievewithpregen(long long L, long long R) {
-  // generate all prime up to sqrt(R)
+vector<bool> segmentedSieveWithPreGen(long long L, long long R) {
+  // generate all primes up to sqrt(R)
   long long lim = sqrt(R);
   vector<bool> mark(lim + 1, false);
   vector<long long> primes;
@@ -27,17 +27,17 @@ vector<bool> segmengedSievewithpregen(long long L, long long R) {
   for (long long i: primes)
     for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i)
       isPrime[j - L] = false;
-  if (L == 1) isPrime[0] = false;
+  if (L == 1) isPrime[0] = false; // special case when L = 1
   return isPrime;
 }
 
-vector<bool> segmengedSievenopregen(long long L, long long R) {
+vector<bool> segmentedSieveNoPreGen(long long L, long long R) {
   vector<bool> isPrime(R - L + 1, true); // x is prime if isPrime[x - L] == true
   long long lim = sqrt(R);
   for (long long i = 2; i <= lim; ++i)
     for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i)
       isPrime[j - L] = false;
-  if (L == 1) isPrime[0] = false;
+  if (L == 1) isPrime[0] = false; // special case when L = 1
   return isPrime;
 }
 
@@ -54,17 +54,17 @@ int main() {
     vector<bool> isPrime1, isPrime2;
     {
       auto t1 = chrono::high_resolution_clock::now();
-      isPrime1 = segmengedSievewithpregen(L, R);
+      isPrime1 = segmentedSieveWithPreGen(L, R);
       auto t2 = chrono::high_resolution_clock::now();
       auto duration = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count() * 1e-9;
-      cout << "segmengedSievewithpregen took " << duration << "s\n";
+      cout << "segmentedSieveWithPreGen took " << duration << "s\n";
     }
     {
       auto t1 = chrono::high_resolution_clock::now();
-      isPrime2 = segmengedSievenopregen(L, R);
+      isPrime2 = segmentedSieveNoPreGen(L, R);
       auto t2 = chrono::high_resolution_clock::now();
       auto duration = chrono::duration_cast<chrono::nanoseconds>(t2 - t1).count() * 1e-9;
-      cout << "segmengedSievenopregen took " << duration << "s\n";
+      cout << "segmentedSieveNoPreGen took " << duration << "s\n";
     }
     if (isPrime1 == isPrime2)
       cout << "Same result\n";
