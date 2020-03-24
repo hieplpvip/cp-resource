@@ -17,11 +17,10 @@ vector<bool> segmengedSieve(long long L, long long R) {
     }
   }
 
-  vector<bool> isPrime(R - L + 1, true); // x is prime is isPrime[x - L] == true
-  for (long long i: primes) {
+  vector<bool> isPrime(R - L + 1, true); // x is prime if isPrime[x - L] == true
+  for (long long i: primes)
     for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i)
       isPrime[j - L] = false;
-  }
   if (L == 1) isPrime[0] = false;
   return isPrime;
 }
