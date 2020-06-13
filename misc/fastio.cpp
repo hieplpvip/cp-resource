@@ -5,7 +5,7 @@ void init_in() {
   ptr = buffer;
   buffer[fread(buffer, 1, sizeof(buffer), stdin)] = 0;
 }
- 
+
 // positive numbers only
 template<typename T>
 void readInt(T *x) {

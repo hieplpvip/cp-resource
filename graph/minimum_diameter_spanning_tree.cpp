@@ -14,17 +14,17 @@ using namespace std;
 using ll = long long;
 const ll oo = 1e18;
 const int N = 500;
- 
+
 struct Edge {
   int u, v, w;
   Edge(int _u, int _v, int _w): u(_u), v(_v), w(_w) {}
 };
- 
+
 int n, m;
 ll d[N][N], ans = oo;
 vector<int> que[N];
 vector<Edge> edges;
- 
+
 int main() {
   ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
   cin >> n >> m;

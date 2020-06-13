@@ -1,16 +1,16 @@
 /** Dynamic LiChao Segment Tree
     Add lines/segments in arbitrary slope order. Query maximum/minimum value at x.
-    
+
     Time complexity: O(lgn) for each operation
     Source: own work
     Performance: roughly as fast as dynamic convex hull
     Advantage: support segment, which convex hull can't
-    
+
     Tested on:
     - https://codeforces.com/gym/101175/problem/F
     - https://vn.spoj.com/problems/VOMARIO/ (can only be solved with LiChao Segment Tree since the objects are segments, not lines)
     - https://csacademy.com/contest/archive/task/squared-ends
-    
+
 **/
 
 template<typename T, T minX, T maxX, T defVal, bool maximum = true>
