@@ -1,5 +1,8 @@
 # Competitive Programming Resourse
+
 My implementation of various common algorithms and data structures.
+
+Codeforces profile: [baohiep](https://codeforces.com/profile/baohiep)
 
 ## Algebra
 
