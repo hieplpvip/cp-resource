@@ -22,7 +22,8 @@ Codeforces profile: [baohiep](https://codeforces.com/profile/baohiep)
 
 ## Geometry
 
-- [Minkowski Sum](Geometry/minkowski-sum.cpp)
+- [Convex Hull](Geometry/convex_hull.cpp)
+- [Minkowski Sum](Geometry/minkowski_sum.cpp)
 
 ## Graph
 
@@ -30,6 +31,9 @@ Codeforces profile: [baohiep](https://codeforces.com/profile/baohiep)
 - [Maximum Bipartie Matching](Graph/matching_hopcroftkarp.cpp)
 - Maximum flow ([Preflow Push](Graph/maxflow_relabel_noopt.cpp), [Dinitz](Graph/maxflow_dinitz.cpp), [HLPP](Graph/maxflow_hlpp.cpp))
 - [Minimum Diameter Spanning Tree](Graph/minimum_diameter_spanning_tree.cpp)
+- [Strong Connected Components](Graph/strong_connected_components.cpp)
+- [Articulation Points and Bridges](Graph/articulation_points_and_bridges.cpp)
+- [Biconnected Components](Graph/biconnected_components.cpp)
 
 ## Miscellaneous
 
@@ -40,6 +44,7 @@ Codeforces profile: [baohiep](https://codeforces.com/profile/baohiep)
 - [Prefix Function](String/prefix_function.cpp)
 - [Suffix Automaton](String/suffix_automaton.cpp)
 - [Z Function](String/z_function.cpp)
+- [Aho-Corasick](String/ahocorasick.cpp)
 
 ## Tree
 

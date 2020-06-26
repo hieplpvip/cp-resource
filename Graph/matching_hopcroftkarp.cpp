@@ -22,9 +22,9 @@ How to use:
 struct HopcroftKarp {
   const int INF = 1e9;
   int n;
-  vector<int> q, d, matchL, matchR;
+  vector<int> d, matchL, matchR;
   vector<vector<int>> adj;
-  HopcroftKarp(int n): n(n), q(n + 1), d(n + 1), matchL(n + 1), matchR(n + 1), adj(n + 1) {}
+  HopcroftKarp(int n): n(n), d(n + 1), matchL(n + 1), matchR(n + 1), adj(n + 1) {}
 
   // u is left vertex, v is right vertex
   void addEdge(int u, int v) {
@@ -32,18 +32,18 @@ struct HopcroftKarp {
   }
 
   bool bfs() {
-    int qh = 0, qt = 0;
+    queue<int> q;
     for (int u = 1; u <= n; ++u) {
-      if (!matchL[u]) d[u] = 0, q[qt++] = u;
+      if (!matchL[u]) d[u] = 0, q.emplace(u);
       else d[u] = INF;
     }
     d[0] = INF;
-    while (qh < qt && d[0] == INF) {
-      int u = q[qh++];
+    while (!q.empty()) {
+      int u = q.front(); q.pop();
       for (int &v: adj[u]) {
         if (d[matchR[v]] == INF) {
           d[matchR[v]] = d[u] + 1;
-          q[qt++] = matchR[v];
+          q.emplace(matchR[v]);
         }
       }
     }
