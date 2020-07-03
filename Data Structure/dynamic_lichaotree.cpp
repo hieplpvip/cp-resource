@@ -25,7 +25,6 @@ private:
     Node *lt = nullptr, *rt = nullptr;
   };
   Node* root;
-  vector<Node*> listNode;
   void update(Node* cur, T l, T r, T u, T v, Line nw) {
     if (v < l || r < u) return;
     T mid = (l + r) >> 1;
@@ -36,16 +35,16 @@ private:
         return;
       }
       if (nw.calc(mid) >= cur->line.calc(mid)) {
-        if (!cur->rt) cur->rt = new Node(), listNode.push_back(cur->rt);
+        if (!cur->rt) cur->rt = new Node();
         update(cur->rt, mid + 1, r, u, v, cur->line);
         cur->line = nw;
       } else {
-        if (!cur->lt) cur->lt = new Node(), listNode.push_back(cur->lt);
+        if (!cur->lt) cur->lt = new Node();
         update(cur->lt, l, mid, u, v, nw);
       }
     } else {
-      if (!cur->rt) cur->rt = new Node(), listNode.push_back(cur->lt);
-      if (!cur->lt) cur->lt = new Node(), listNode.push_back(cur->rt);
+      if (!cur->rt) cur->rt = new Node();
+      if (!cur->lt) cur->lt = new Node();
       update(cur->lt, l, mid, u, v, nw);
       update(cur->rt, mid + 1, r, u, v, nw);
     }
@@ -70,9 +69,6 @@ public:
     return res;
   }
   void init() {
-    for (auto ptr: listNode) delete(ptr);
     root = new Node;
-    listNode.clear();
-    listNode.push_back(root);
   }
 };
