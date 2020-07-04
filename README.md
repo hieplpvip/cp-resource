@@ -44,6 +44,7 @@ Codeforces profile: [baohiep](https://codeforces.com/profile/baohiep)
 
 - [Prefix Function](String/prefix_function.cpp)
 - [Suffix Automaton](String/suffix_automaton.cpp)
+- [Suffix Array](String/suffix_array.cpp)
 - [Z Function](String/z_function.cpp)
 - [Aho-Corasick](String/ahocorasick.cpp)
 
